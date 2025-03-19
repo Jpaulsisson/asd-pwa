@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styles from './SideNav.module.css';
 import HomeIcon from '../HomeIcon/HomeIcon';
-import { useTheme } from '../../contexts/Themecontext';
+import { useTheme } from '../../contexts/ThemeContext';
 
 type SideNavProps = {
     isOpen: boolean;

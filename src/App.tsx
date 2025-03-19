@@ -1,13 +1,15 @@
 import { Outlet } from 'react-router-dom';
 import styles from './App.module.css'
-import { useTheme } from './contexts/Themecontext';
+import { useTheme } from './contexts/ThemeContext';
 import { useEffect, useState } from 'react';
 import SideNav from './components/SideNav/SideNav';
 import MenuIcon from './components/MenuIcon/MenuIcon';
+import { useSession } from './contexts/SessionContext';
 
 
 function App() {
   const { theme } = useTheme();
+  const { signInOrUp, user } = useSession()
 
 
   useEffect(() => {
@@ -20,6 +22,7 @@ function App() {
     setIsOpen((prev) => !prev);
   }
 
+  console.log(localStorage.getItem('theme'));
   // function testMessage() {
   //   const id = Date.now().toString();
 
@@ -46,7 +49,7 @@ function App() {
       </header>
       <main>
         <Outlet />
-        <button>Sign in</button>
+        {user ? <p>Welcome {user?.profile["cognito:username"] as string}</p> : <button onClick={() => signInOrUp()}>Sign in</button>}
       </main>
       <footer>
         <p>footer</p>
